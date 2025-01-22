@@ -1,0 +1,11 @@
+<template>
+  <div>
+    <h2>Conocimientos</h2>
+    <ul>
+      <li>Java</li>
+      <li>Python</li>
+      <li>Vue.js</li>
+      <li>FastAPI</li>
+    </ul>
+  </div>
+</template>

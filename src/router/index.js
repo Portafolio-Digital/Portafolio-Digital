@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import ProjectsView from "../views/ProjectsView.vue";
+import PersonalInfo from "../components/PersonalInfoCom.vue";
+import Skills from "../components/SkillsCom.vue";
+import Projects from "../components/ProjectsCom.vue";
+import ContactForm from "../components/ContactFormCom.vue";
 
 const routes = [
-  { path: "/", name: "Home", component: HomeView },
-  { path: "/projects", name: "Projects", component: ProjectsView },
+  { path: "/", component: PersonalInfo },
+  { path: "/skills", component: Skills },
+  { path: "/projects", component: Projects },
+  { path: "/contact", component: ContactForm },
 ];
 
 const router = createRouter({

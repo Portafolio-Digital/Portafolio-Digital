@@ -1,9 +1,29 @@
 <template>
-  <div class="sidebar">
-    <ul>
-      <li><router-link to="/">Información Personal</router-link></li>
-      <li><router-link to="/projects">Proyectos</router-link></li>
-      <li><router-link to="/contact">Contacto</router-link></li>
+  <div class="sidebarcom d-flex flex-column vh-100">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <router-link to="/" class="btn-custom my-2" active-class="active"
+          >Información Personal</router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link to="/skills" class="btn-custom my-2" active-class="active"
+          >Conocimientos</router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link
+          to="/projects"
+          class="btn-custom my-2"
+          active-class="active"
+          >Proyectos</router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link to="/contact" class="btn-custom my-2" active-class="active"
+          >Formas de Contacto</router-link
+        >
+      </li>
     </ul>
   </div>
 </template>
@@ -14,21 +34,41 @@ export default {
 };
 </script>
 
-<style>
-.sidebar {
-  width: 200px;
-  background-color: #32cd32;
-  /* Verde llamativo */
-  height: 100vh;
+<style scoped>
+/* Estilo general del sidebar */
+.sidebarcom {
+  width: 400px;
   position: fixed;
+  color: #0f110e;
+  background-color: #92f83f; /* Verde llamativo */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+/* Estilo de los botones */
+.btn-custom {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #0f110e; /* Texto oscuro */
+  background-color: #7ec445; /* Fondo verde claro */
+  border-radius: 25px; /* Esquinas redondeadas */
+  text-decoration: none; /* Quitar subrayado */
+  transition: all 0.3s ease; /* Animación suave */
 }
 
-li {
-  margin: 20px 0;
+/* Hover: Cambia el color al pasar el mouse */
+.btn-custom:hover {
+  background-color: #b0eb7f; /* Fondo oscuro */
+  color: #0f110e; /* Texto blanco */
+}
+
+/* Botón activo: Resalta el botón de la ruta actual */
+.active {
+  background-color: #b0eb7f; /* Fondo oscuro */
+  color: #0f110e; /* Texto blanco */
 }
 </style>

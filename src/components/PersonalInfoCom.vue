@@ -8,7 +8,7 @@
     </p>
     <div class="profile-image-container mt-4">
       <img
-        src="../assets/Foto de perfil.png"
+        src="../assets/Foto de perfil.jpg"
         alt="Foto de perfil"
         class="profile-image"
       />
@@ -28,7 +28,7 @@ export default {
   flex: 1;
   max-width: 800px; /* Limita el ancho del contenido */
   margin: 0 auto; /* Centra el contenedor horizontalmente */
-  padding: 20px;
+  padding: 30px;
 }
 
 /* Título */
@@ -36,6 +36,7 @@ export default {
   font-size: 2.5rem;
   font-weight: bold;
   color: #0f110e; /* Color oscuro */
+  margin-top: 100px;
 }
 
 /* Descripción */

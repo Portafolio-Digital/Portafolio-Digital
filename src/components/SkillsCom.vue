@@ -59,6 +59,7 @@
           <li>GitHub Desktop</li>
           <li>Visual Studio Code</li>
           <li>Docker</li>
+          <li>Krita</li>
         </ul>
       </div>
     </div>
@@ -88,8 +89,8 @@ h2 {
 
 /* Subtítulos */
 h4 {
-  color: #333; /* Color gris oscuro */
-  margin-bottom: 15px;
+  color: #0f110e; /* Color gris oscuro */
+  margin-bottom: 9px;
 }
 
 /* Lista estática */
@@ -101,10 +102,10 @@ h4 {
 
 .static-list li {
   font-size: 1.1rem;
-  color: #555; /* Color gris medio */
+  color: #0f110e; /* Color gris medio */
   line-height: 1.6;
   padding: 5px 0; /* Espaciado entre elementos */
-  border-bottom: 1px solid #ddd; /* Línea separadora */
+  border-bottom: 1px solid #92f83f; /* Línea separadora */
 }
 
 .static-list li:last-child {

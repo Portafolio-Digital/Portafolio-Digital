@@ -3,7 +3,7 @@ import PersonalInfo from "../components/PersonalInfoCom.vue";
 import Skills from "../components/SkillsCom.vue";
 import Projects from "../components/ProjectsCom.vue";
 import ContactForm from "../components/ContactFormCom.vue";
-import Messages from "../components/MessagesCom.vue";
+import Messages from "../components/AdminCom.vue";
 
 const routes = [
   { path: "/", component: PersonalInfo },

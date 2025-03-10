@@ -1,4 +1,5 @@
-# pdf
+# Portafolio Digital Frontend (pdf)
+Este es el repositorio del frontend del portafolio digital.
 
 ## Project setup
 ```

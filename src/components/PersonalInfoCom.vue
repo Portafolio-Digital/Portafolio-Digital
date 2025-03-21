@@ -28,7 +28,8 @@ export default {
   flex: 1;
   max-width: 800px; /* Limita el ancho del contenido */
   margin: 0 auto; /* Centra el contenedor horizontalmente */
-  padding: 30px;
+  padding: 20px;
+  text-align: center;
 }
 
 /* Título */
@@ -55,11 +56,18 @@ export default {
 
 /* Imagen de perfil */
 .profile-image {
-  width: 300px; /* Ajusta el tamaño de la imagen */
-  height: 300px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%; /* Hace la imagen circular */
   border: 8px solid #92f83f; /* Borde verde */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
   object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
+}
+
+@media (max-width: 768px) {
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
 }
 </style>

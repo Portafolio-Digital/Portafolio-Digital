@@ -101,7 +101,7 @@ h4 {
 }
 
 .static-list li {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #0f110e; /* Color gris medio */
   line-height: 1.6;
   padding: 5px 0; /* Espaciado entre elementos */
@@ -110,5 +110,11 @@ h4 {
 
 .static-list li:last-child {
   border-bottom: none; /* Elimina la línea del último elemento */
+}
+
+@media (max-width: 768px) {
+  .static-list li {
+    font-size: 0.9rem;
+  }
 }
 </style>

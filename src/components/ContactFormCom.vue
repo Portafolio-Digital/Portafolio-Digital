@@ -1,7 +1,9 @@
 <template>
   <div class="contact-form-com">
     <h2>Mandame un Mensaje</h2>
+    <label for="message">Escribe tu mensaje:</label>
     <textarea
+      id="message"
       v-model="message"
       placeholder="Escribe y luego presiona enter para enviar y si quieres poner en una línea separada presiona shift enter"
       @keydown.enter.prevent.exact="sendMessage"
@@ -24,41 +26,40 @@
           </a>
         </span>
       </div>
-      <div class="contact-item">
-        <img src="@/assets/Telefono.png" alt="Teléfono" class="icon" />
-        <span>Teléfono: +51 9364516267</span>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { db } from "../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import axios from "axios";
 
 export default {
-  name: "ContactFormCom",
   data() {
     return {
-      message: "",
+      message: "", // Variable para almacenar el mensaje
     };
   },
   methods: {
     async sendMessage() {
-      if (this.message.trim()) {
-        try {
-          await addDoc(collection(db, "messages"), {
-            text: this.message,
-            timestamp: serverTimestamp(),
-          });
-          alert("Mensaje enviado correctamente.");
-          this.message = ""; // Limpiar el mensaje después de enviarlo
-        } catch (error) {
-          console.error("Error al enviar el mensaje: ", error);
-          alert("Hubo un error al enviar el mensaje.");
-        }
-      } else {
-        alert("Por favor, escribe un mensaje antes de enviarlo.");
+      if (this.message.trim() === "") {
+        alert("El mensaje no puede estar vacío."); // Validación del formulario
+        return;
+      }
+
+      try {
+        // Enviar el mensaje al backend
+        const response = await axios.post(
+          "http://localhost:3000/api/messages",
+          {
+            message: this.message,
+          }
+        );
+
+        alert(response.data.message); // Mostrar mensaje de éxito
+        this.message = ""; // Limpiar el campo después de enviar
+      } catch (error) {
+        console.error("Error al enviar el mensaje:", error);
+        alert("Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
       }
     },
   },
@@ -70,7 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 34px;
+  padding: 20px;
 }
 
 h2 {
@@ -78,9 +79,14 @@ h2 {
   margin-bottom: 30px;
 }
 
+label {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 textarea {
-  width: 70%;
-  height: 500px;
+  width: 100%;
+  height: 200px;
   border: 10px solid #92f83f;
   border-radius: 10px;
   padding: 20px;
@@ -112,5 +118,11 @@ textarea:focus {
 .icon {
   width: 55px;
   height: 55px;
+}
+
+@media (max-width: 768px) {
+  textarea {
+    height: 150px;
+  }
 }
 </style>

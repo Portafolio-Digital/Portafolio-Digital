@@ -1,6 +1,9 @@
 <template>
-  <div class="sidebarcom">
-    <!-- Contenedor de los botones -->
+  <div class="sidebarcom" :class="{ collapsed: isCollapsed }">
+    <!-- Botón para alternar el sidebar -->
+    <button class="toggle-btn" @click="toggleSidebar">
+      <i class="fas" :class="isCollapsed ? 'fa-bars' : 'fa-times'"></i>
+    </button>
     <div class="button-container">
       <ul class="nav flex-column">
         <li class="nav-item">
@@ -43,26 +46,67 @@
 <script>
 export default {
   name: "SidebarCom",
+  props: {
+    isCollapsed: {
+      type: Boolean,
+      required: true,
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* Estilo general del sidebar */
+/* Sidebar */
 .sidebarcom {
   width: 400px;
   height: 100vh;
   position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #92f83f; /* Color de fondo de respaldo */
+  background-image: url("@/assets/sidebar-design.png"); /* Ruta de la imagen */
+  background-size: cover; /* Ajustar la imagen al tamaño del sidebar */
+  background-repeat: no-repeat; /* Evitar que la imagen se repita */
+  background-position: center; /* Centrar la imagen */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000; /* Asegurarse de que el sidebar esté encima del contenido */
+}
+
+/* Ocultar el sidebar solo en pantallas pequeñas */
+.sidebarcom.collapsed {
+  transform: translateX(-100%); /* Ocultar el sidebar */
+}
+
+@media (max-width: 768px) {
+  .sidebarcom {
+    width: 100%; /* El sidebar ocupa todo el ancho en pantallas pequeñas */
+    transform: translateX(-100%); /* Ocultar el sidebar por defecto */
+  }
+
+  .sidebarcom.collapsed {
+    transform: translateX(0); /* Mostrar el sidebar cuando no está colapsado */
+  }
+}
+
+/* Botón para alternar el sidebar */
+.toggle-btn {
+  display: none; /* Ocultar el botón por defecto */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
   color: #0f110e;
-  background-color: #92f83f; /* Verde llamativo */
-  background-image: url("@/assets/DiseñodelSidebar.png"); /* Imagen de fondo */
-  background-size: 100% 100%; /* Ajusta la imagen para cubrir todo el contenedor */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-position: center; /* Centra la imagen */
-  display: flex;
-  justify-content: flex-start; /* Alinea el contenido al inicio verticalmente */
-  align-items: flex-start; /* Alinea el contenido al inicio horizontalmente */
-  padding: 0;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  z-index: 1100; /* Asegurarse de que el botón esté encima del sidebar */
+}
+
+@media (max-width: 768px) {
+  .toggle-btn {
+    display: block; /* Mostrar el botón en pantallas pequeñas */
+  }
 }
 
 /* Contenedor de los botones */

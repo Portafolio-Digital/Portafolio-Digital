@@ -288,6 +288,7 @@ export default {
       messageLimit: 5, // Límite de mensajes visibles
       showImage: false, // Mostrar modal de imagen
       currentImage: null, // Imagen actual en el modal
+      personalInfo: {}, // Información personal obtenida desde el backend
     };
   },
   methods: {
@@ -511,6 +512,19 @@ export default {
     removeFramework(index) {
       this.project.frameworks.splice(index, 1);
     },
+
+    // Obtener información personal desde el backend
+    async fetchPersonalInfo() {
+      try {
+        const response = await axios.get(
+          `${process.env.VUE_APP_BACKEND_URL}/api/personal-info`
+        );
+        this.personalInfo = response.data;
+      } catch (error) {
+        console.error("Error al obtener la información personal:", error);
+        alert("Hubo un error al cargar la información personal.");
+      }
+    },
   },
   computed: {
     // Mensajes visibles según el límite
@@ -522,6 +536,8 @@ export default {
     // Cargar proyectos y mensajes al montar el componente
     await this.fetchProjects();
     await this.fetchMessages();
+    // Cargar información personal al montar el componente
+    await this.fetchPersonalInfo();
   },
 };
 </script>

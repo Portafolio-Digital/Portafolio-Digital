@@ -70,7 +70,9 @@ export default {
     // Obtener proyectos desde el backend
     async fetchProjects() {
       try {
-        const response = await axios.get("http://localhost:3000/api/projects");
+        const response = await axios.get(
+          `${process.env.VUE_APP_BACKEND_URL}/api/projects`
+        );
         // Convertir cadenas separadas por comas en arrays
         this.projects = response.data.map((project) => ({
           ...project,

@@ -49,7 +49,7 @@ export default {
       try {
         // Enviar el mensaje al backend
         const response = await axios.post(
-          "http://localhost:3000/api/messages",
+          `${process.env.VUE_APP_BACKEND_URL}/api/messages`, // Usar la variable de entorno
           {
             message: this.message,
           }

@@ -71,7 +71,7 @@ export default {
     async fetchProjects() {
       try {
         const response = await axios.get(
-          `${process.env.VUE_APP_BACKEND_URL}/api/projects`
+          `${process.env.VUE_APP_BACKEND_URL}/api/projects` // Usar la variable de entorno
         );
         // Convertir cadenas separadas por comas en arrays
         this.projects = response.data.map((project) => ({

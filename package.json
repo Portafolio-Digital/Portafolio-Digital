@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "node src/server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -13,8 +14,10 @@
     "bootstrap": "^5.3.3",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mysql": "^2.18.1",
+    "mysql2": "^3.14.0",
     "pdf": "file:",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",

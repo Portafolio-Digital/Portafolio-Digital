@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+require("dotenv").config(); // Cargar variables de entorno desde .env
 
 const app = express();
 const port = 3000;
@@ -12,10 +13,10 @@ app.use(bodyParser.json());
 
 // Configuración de la base de datos MySQL
 const db = mysql.createConnection({
-  host: "localhost", // Cambia esto si usas un servidor remoto
-  user: "root", // Tu usuario de MySQL
-  password: "Dieguito:2002", // Tu contraseña de MySQL
-  database: "dbpd", // Nombre de tu base de datos
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 // Conexión a la base de datos

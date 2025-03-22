@@ -295,7 +295,7 @@ export default {
     async fetchProjects() {
       try {
         const response = await axios.get(
-          "https://portafolio-backend-wdfo.onrender.com/api/projects"
+          `${process.env.VUE_APP_BACKEND_URL}/api/projects`
         );
         // Convertir cadenas separadas por comas en arrays
         this.projects = response.data.map((project) => ({
@@ -319,7 +319,7 @@ export default {
 
       try {
         const response = await axios.post(
-          "https://portafolio-backend-wdfo.onrender.com/api/projects",
+          `${process.env.VUE_APP_BACKEND_URL}/api/projects`,
           this.project
         );
         const newProject = { ...this.project, id: response.data.projectId };
@@ -336,7 +336,7 @@ export default {
     async fetchMessages() {
       try {
         const response = await axios.get(
-          "https://portafolio-backend-wdfo.onrender.com/api/messages"
+          `${process.env.VUE_APP_BACKEND_URL}/api/messages`
         );
         console.log("Mensajes obtenidos del backend:", response.data); // Verificar los datos obtenidos
         this.messages = response.data;
@@ -367,7 +367,9 @@ export default {
       }
 
       try {
-        await axios.delete(`http://localhost:3000/api/projects/${id}`);
+        await axios.delete(
+          `${process.env.VUE_APP_BACKEND_URL}/api/projects/${id}`
+        );
         // Eliminar el proyecto de la lista local
         this.projects = this.projects.filter((project) => project.id !== id);
         alert("Proyecto eliminado con éxito.");

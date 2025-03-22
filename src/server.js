@@ -1,11 +1,10 @@
 const express = require("express");
 const mysql = require("mysql");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config(); // Cargar variables de entorno desde .env
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(
@@ -15,7 +14,7 @@ app.use(
     credentials: true, // Si necesitas enviar cookies o encabezados de autenticación
   })
 );
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Configuración de la base de datos MySQL
 const db = mysql.createConnection({

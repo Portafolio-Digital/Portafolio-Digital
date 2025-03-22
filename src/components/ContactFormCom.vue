@@ -47,7 +47,10 @@ export default {
       }
 
       try {
-        // Enviar el mensaje al backend
+        console.log(
+          "Enviando mensaje a:",
+          `${process.env.VUE_APP_BACKEND_URL}/api/messages`
+        );
         const response = await axios.post(
           `${process.env.VUE_APP_BACKEND_URL}/api/messages`, // Usar la variable de entorno
           {

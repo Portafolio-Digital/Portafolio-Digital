@@ -8,7 +8,13 @@ const app = express();
 const port = 3000;
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://portawebdiego.netlify.app", // Reemplaza con la URL de tu frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+    credentials: true, // Si necesitas enviar cookies o encabezados de autenticación
+  })
+);
 app.use(bodyParser.json());
 
 // Configuración de la base de datos MySQL

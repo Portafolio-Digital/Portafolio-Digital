@@ -294,7 +294,9 @@ export default {
     // Obtener proyectos desde el backend
     async fetchProjects() {
       try {
-        const response = await axios.get("http://localhost:3000/api/projects");
+        const response = await axios.get(
+          "https://portafolio-backend-wdfo.onrender.com/api/projects"
+        );
         // Convertir cadenas separadas por comas en arrays
         this.projects = response.data.map((project) => ({
           ...project,
@@ -317,7 +319,7 @@ export default {
 
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/projects",
+          "https://portafolio-backend-wdfo.onrender.com/api/projects",
           this.project
         );
         const newProject = { ...this.project, id: response.data.projectId };
@@ -333,7 +335,9 @@ export default {
     // Obtener mensajes desde la base de datos
     async fetchMessages() {
       try {
-        const response = await axios.get("http://localhost:3000/api/messages");
+        const response = await axios.get(
+          "https://portafolio-backend-wdfo.onrender.com/api/messages"
+        );
         console.log("Mensajes obtenidos del backend:", response.data); // Verificar los datos obtenidos
         this.messages = response.data;
       } catch (error) {

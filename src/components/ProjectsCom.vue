@@ -74,7 +74,6 @@ export default {
           `${process.env.VUE_APP_BACKEND_URL}/api/projects`
         );
         console.log("Respuesta del backend:", response.data); // Depurar la respuesta
-        // Convertir cadenas separadas por comas en arrays
         this.projects = response.data.map((project) => ({
           ...project,
           tools: project.tools ? project.tools.split(",") : [],

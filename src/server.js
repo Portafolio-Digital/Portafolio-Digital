@@ -16,22 +16,51 @@ app.use(
 );
 app.use(express.json());
 
-// Configuración de la base de datos MySQL
-const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
+// Función para crear una conexión a la base de datos
+function createConnection() {
+  const connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
 
-// Conexión a la base de datos
-db.connect((err) => {
-  if (err) {
-    console.error("Error al conectar a la base de datos:", err);
-    return;
-  }
-  console.log("Conexión exitosa a la base de datos MySQL");
-});
+  // Manejar errores de conexión
+  connection.connect((err) => {
+    if (err) {
+      console.error("Error al conectar a la base de datos:", err);
+      setTimeout(createConnection, 2000); // Intentar reconectar después de 2 segundos
+    } else {
+      console.log("Conexión exitosa a la base de datos MySQL");
+    }
+  });
+
+  // Manejar errores durante la conexión
+  connection.on("error", (err) => {
+    console.error("Error en la conexión a la base de datos:", err);
+    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+      createConnection(); // Reconectar si la conexión se pierde
+    } else {
+      throw err; // Otros errores deben ser manejados manualmente
+    }
+  });
+
+  return connection;
+}
+
+// Crear la conexión inicial
+const db = createConnection();
+
+// Mantener la conexión activa
+setInterval(() => {
+  db.query("SELECT 1", (err) => {
+    if (err) {
+      console.error("Error al mantener la conexión activa:", err);
+    } else {
+      console.log("Conexión a la base de datos activa");
+    }
+  });
+}, 5000); // Enviar un ping cada 5 segundos
 
 // Ruta para guardar mensajes
 app.post("/api/messages", (req, res) => {
@@ -41,7 +70,6 @@ app.post("/api/messages", (req, res) => {
     return res.status(400).json({ error: "El mensaje no puede estar vacío" });
   }
 
-  // Cambiar 'content' por el nombre correcto de la columna (por ejemplo, 'text')
   const query = "INSERT INTO messages (text) VALUES (?)";
   db.query(query, [message], (err, result) => {
     if (err) {
